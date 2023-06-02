@@ -7,18 +7,15 @@ const MenuNoLogin = () => {
 
     const itemNoLogin: MenuProps['items'] = [
         {
-            label: (<Link to='./Register' >
+            label: (<Link to='/Register' >
                 Register
             </Link>),
             key: 'help',
             disabled: true,
-
         },
-
-
         {
             label: (
-                <Link to='./Login'  >
+                <Link to='/login'  >
                     Log In
                 </Link>
             ),

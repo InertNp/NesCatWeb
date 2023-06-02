@@ -1,31 +1,34 @@
 import { AppstoreOutlined, MenuFoldOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu, MenuProps } from 'antd';
+import { signOut } from 'firebase/auth';
+import { setGlobalState, useGlobalState } from '../../hooks/GlobalHooks';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../../data/firebase';
 
-import { useGlobalState } from '../../hooks/GlobalHooks';
-import { Link } from 'react-router-dom';
 
 const MenuLogIn = () => {
-    const [name] = useGlobalState('name')
+
+    const [currentUser] = useGlobalState('currentUser')
+    const navigate = useNavigate();
     const itemLogin: MenuProps['items'] = [
         {
             label: (<Link className='text-black text-md cursor-pointer flex justify-center items-center gap-2' to={'./profile/:id'}>
                 <Avatar icon={<UserOutlined />} />
-                {name}
+                {currentUser?.email}
             </Link>),
             key: 'Nam',
-
-
         },
         {
             key: "Sth",
-            label: (<div><AppstoreOutlined style={{ fontSize: '25px' }} /></div>),
+            label: (<div className='flex justify-center items-center'><AppstoreOutlined style={{ fontSize: '25px' }} /></div>),
             children: [
                 {
                     label: (<div className='w-full  flex justify-start items-center'
-
-                        onClick={() => {
-                            localStorage.clear()
-                            window.location.href = "./";
+                        onClick={async () => {
+                            signOut(auth);
+                            setGlobalState('isLoggedIn', false)
+                            localStorage.clear();
+                            navigate('/login')
                         }}>
                         Sign Out
                     </div>),
