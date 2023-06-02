@@ -6,3 +6,19 @@ body{
     margin: 0;
     padding: 0;
 }
+.border{
+    border: solid 2px red;
+}
+.ant-menu-horizontal {
+    border: none !important;
+}
+.ant-menu-item::after{
+   display: none; 
+}
+.ant-menu-submenu-horizontal::after{
+    border: none !important; 
+}
+.ant-menu-vertical {
+    border: none !important;
+}
+
