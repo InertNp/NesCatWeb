@@ -11,7 +11,7 @@ const MenuNoLogin = () => {
                 Register
             </Link>),
             key: 'help',
-            disabled: true,
+            disabled: false,
         },
         {
             label: (

@@ -1,10 +1,11 @@
-import ShowPost from "../container/Home/ShowPost"
+import ShowPost from "../container/Home/ShowPost";
 
 const Home = () => {
-
-    return <div className="flex flex-col w-full">
-        <ShowPost />
+  return (
+    <div className="px-10">
+      <ShowPost />
     </div>
-}
+  );
+};
 
-export default Home
+export default Home;

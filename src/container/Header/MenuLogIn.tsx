@@ -1,66 +1,113 @@
-import { AppstoreOutlined, MenuFoldOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Menu, MenuProps } from 'antd';
-import { signOut } from 'firebase/auth';
-import { setGlobalState, useGlobalState } from '../../hooks/GlobalHooks';
-import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../data/firebase';
+import {
+  AppstoreOutlined,
+  HomeFilled,
+  MenuFoldOutlined,
+  MoreOutlined,
+  NotificationFilled,
+  NotificationOutlined,
+  PlusOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import { Avatar, Menu, MenuProps } from "antd";
 
+import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
+import { Link, useNavigate } from "react-router-dom";
+
+const navLink = `text-black text-md cursor-pointer flex justify-start capitalize items-center gap-1`;
 
 const MenuLogIn = () => {
+  const [currentUser] = useGlobalState("currentUser");
 
-    const [currentUser] = useGlobalState('currentUser')
-    const navigate = useNavigate();
-    const itemLogin: MenuProps['items'] = [
+  const navigate = useNavigate();
+  const itemLogin: MenuProps["items"] = [
+    {
+      label: (
+        <Link className={navLink} to={"/"}>
+          <HomeFilled style={{ fontSize: "16px " }} />
+          Home
+        </Link>
+      ),
+      key: "home",
+    },
+    {
+      label: (
+        <Link className={navLink} to={"/addpost"}>
+          <PlusOutlined style={{ fontSize: "16px " }} />
+          Add Post
+        </Link>
+      ),
+      key: "add",
+    },
+    {
+      label: (
+        <Link className={navLink} to={"/notification"}>
+          <NotificationFilled style={{ fontSize: "16px " }} />
+          notification
+        </Link>
+      ),
+      key: "notify",
+    },
+    {
+      label: (
+        <Link className={navLink} to={"/profile/:id"}>
+          <Avatar
+            src={
+              currentUser.imgUrl == null
+                ? `http://localhost:9000/img/avatar.jpg`
+                : `http://localhost:9000/img/${currentUser.imgUrl}`
+            }
+          />
+          {currentUser?.username}
+        </Link>
+      ),
+      key: "Nam",
+    },
+
+    {
+      key: "Sth",
+      popupOffset: [0, 20],
+      label: (
+        <div className="flex justify-start items-center h-full gap-2 ">
+          <SettingOutlined style={{ fontSize: "25px" }} />
+          <p className="block md:hidden">Setting</p>
+        </div>
+      ),
+      children: [
         {
-            label: (<Link className='text-black text-md cursor-pointer flex justify-center items-center gap-2' to={'./profile/:id'}>
-                <Avatar icon={<UserOutlined />} />
-                {currentUser?.email}
-            </Link>),
-            key: 'Nam',
+          label: <Link to={"./"}>Setting</Link>,
+          key: "setting4",
         },
         {
-            key: "Sth",
-            label: (<div className='flex justify-center items-center'><AppstoreOutlined style={{ fontSize: '25px' }} /></div>),
-            children: [
-                {
-                    label: (<div className='w-full  flex justify-start items-center'
-                        onClick={async () => {
-                            signOut(auth);
-                            setGlobalState('isLoggedIn', false)
-                            localStorage.clear();
-                            navigate('/login')
-                        }}>
-                        Sign Out
-                    </div>),
-                    key: 'setting1',
-                },
-                {
-                    label: (<Link to={'./'}>
-                        Help
-                    </Link>),
-                    key: 'setting3',
-                },
-                {
-                    label: (<Link to={'./'}>
-                        FAQ
-                    </Link>),
-                    key: 'setting4',
-                },
-            ]
-
+          label: <Link to={"./"}>Help</Link>,
+          key: "setting3",
         },
+        {
+          label: (
+            <div
+              className="w-full  flex justify-start items-start"
+              onClick={async () => {
+                setGlobalState("isLoggedIn", false);
+                localStorage.clear();
+                navigate("/login");
+              }}
+            >
+              Sign Out
+            </div>
+          ),
+          key: "setting1",
+        },
+      ],
+    },
+  ];
+  return (
+    <Menu
+      mode="horizontal"
+      items={itemLogin}
+      className="h-full  flex justify-end items-center w-2/3 "
+      overflowedIndicator={<MoreOutlined style={{ fontSize: "20px" }} />}
+      forceSubMenuRender={true}
+    />
+  );
+};
 
-    ];
-    return (
-        < Menu
-            mode="horizontal"
-            items={itemLogin}
-            className="max-h-[80%] text-md flex justify-end items-center w-1/2 "
-            theme="light"
-            overflowedIndicator={<MenuFoldOutlined />}
-            forceSubMenuRender={true}
-        />
-    )
-}
-
-export default MenuLogIn
+export default MenuLogIn;
