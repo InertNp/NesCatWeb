@@ -1,4 +1,4 @@
-import { DislikeFilled, LikeFilled } from "@ant-design/icons";
+import { DislikeFilled, LikeFilled, MoreOutlined } from "@ant-design/icons";
 import { Button, Image, List } from "antd";
 import { Link } from "react-router-dom";
 
@@ -34,6 +34,12 @@ const ListPost = ({
           <Button>
             <DislikeFilled />
           </Button>
+
+          <MoreOutlined
+            style={{ fontSize: "20px" }}
+            className="rounded-full text-black hover:text-blue-600 p-2 hover:shadow-md hover:bg-slate-50"
+          />
+
           <Link
             className="capitalize font-bold "
             to={`profile/:${authorID}`}
@@ -42,9 +48,9 @@ const ListPost = ({
         </div>,
       ]}
     >
-      <div className="w-full h-full flex flex-col lg:flex-row items-center  justify-center  relative ">
+      <div className="w-full h-full flex flex-col lg:flex-row items-start  justify-between   relative ">
         <p className="absolute top-0 right-0 lg:left-0 text-light text-sm">{`${id}`}</p>
-        <div className="flex flex-col ">
+        <div className="flex flex-col mt-4">
           <h1 className="font-bold text-xl text-start w-full">{title}</h1>
           <p className="font-normal text-md overflow-hidden text-start w-full">
             {description === null || description === undefined
@@ -56,7 +62,7 @@ const ListPost = ({
           <Image
             height={400}
             width={400}
-            className="object-cover md:min-w-[300px] lg:min-w-[400px]"
+            className="object-cover md:min-w-[300px] lg:min-w-[400px] "
             alt="logo"
             src={`http://localhost:9000/img/${imgUrl}`}
           />
