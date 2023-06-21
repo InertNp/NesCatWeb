@@ -5,8 +5,10 @@ import useMessage from "antd/es/message/useMessage";
 import UploadImg from "../container/AddPost/UploadImg";
 import TextEditor from "../container/AddPost/TextEditor";
 import TitleInput from "../container/AddPost/TitleInput";
+import { useNavigate } from "react-router-dom";
 
 const AddPost = () => {
+  const navigate = useNavigate();
   const [userData] = useGlobalState("currentUser");
   const [alert, alertText] = useMessage();
   function handleFinish(e: any) {
@@ -36,8 +38,9 @@ const AddPost = () => {
           alert.error("Your post was not uploaded");
         } else {
         }
-        console.log(e);
-        // alert.info(e);
+        // console.log(e);
+        alert.success("Posted Sucessfully");
+        navigate("/home");
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +58,7 @@ const AddPost = () => {
         className="w-full h-full  flex flex-col justify-center items-center"
       >
         {/* upload */}
-        <div className="w-full flex flex-col md:flex-row md:justify-between border md:items-center">
+        <div className="w-full flex flex-col md:flex-row md:justify-between  md:items-center">
           <UploadImg />
           <TitleInput />
         </div>

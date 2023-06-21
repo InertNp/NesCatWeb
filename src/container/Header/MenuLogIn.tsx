@@ -1,10 +1,7 @@
 import {
-  AppstoreOutlined,
   HomeFilled,
-  MenuFoldOutlined,
   MoreOutlined,
   NotificationFilled,
-  NotificationOutlined,
   PlusOutlined,
   SettingOutlined,
 } from "@ant-design/icons";

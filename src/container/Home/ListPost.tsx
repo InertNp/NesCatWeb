@@ -34,12 +34,9 @@ const ListPost = ({
           <Button>
             <DislikeFilled />
           </Button>
-
-          <MoreOutlined
-            style={{ fontSize: "20px" }}
-            className="rounded-full text-black hover:text-blue-600 p-2 hover:shadow-md hover:bg-slate-50"
-          />
-
+          <Button>
+            <MoreOutlined style={{ fontSize: "20px" }} />
+          </Button>
           <Link
             className="capitalize font-bold "
             to={`profile/:${authorID}`}
@@ -50,15 +47,15 @@ const ListPost = ({
     >
       <div className="w-full h-full flex flex-col lg:flex-row items-start  justify-between   relative ">
         <p className="absolute top-0 right-0 lg:left-0 text-light text-sm">{`${id}`}</p>
-        <div className="flex flex-col mt-4">
-          <h1 className="font-bold text-xl text-start w-full">
+        <div className="flex flex-col pt-10 ">
+          <div className="font-bold text-xl text-start w-full ">
             {parse(title)}
-          </h1>
-          <p className="font-normal text-md overflow-hidden text-start w-full px-2">
+          </div>
+          <div className="font-normal text-md overflow-hidden text-start w-full px-2">
             {description === null || description === undefined
               ? null
               : parse(description)}
-          </p>
+          </div>
         </div>
         {imgUrl === "undefined" || imgUrl === null ? null : (
           <Image

@@ -30,8 +30,9 @@ const Login = () => {
           const data = e[0];
           localStorage.setItem("data", JSON.stringify(data));
           localStorage.setItem("isLoggedIn", "true");
-          navigate("/");
           setGlobalState("isLoggedIn", true);
+          setGlobalState("currentUser", data);
+          navigate("/");
         }
         setGlobalState("loading", false);
       })

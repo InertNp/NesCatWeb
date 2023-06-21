@@ -2,13 +2,50 @@ import { Alert, Button, Form, Input, Space } from "antd";
 
 import { useForm } from "antd/es/form/Form";
 import { useState } from "react";
+import { setGlobalState } from "../hooks/GlobalHooks";
+import useMessage from "antd/es/message/useMessage";
+import { useNavigate } from "react-router-dom";
+
+type vali = "success" | "" | "error";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [message, text] = useMessage();
   const [form] = useForm();
-
+  const [username] = useState("");
   const [error, setError] = useState(false);
+  const [validate, setValidate] = useState<vali>("");
+  function checkUsername(e: any) {
+    const userlength = e.target.value;
+
+    const value = {
+      username: userlength,
+    };
+
+    if (userlength.length >= 5) {
+      fetch("http://localhost:9000/checkUsername", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((e) => {
+          if (e === true) {
+            setValidate("error");
+          } else {
+            setValidate("success");
+          }
+        });
+    }
+  }
   const onFinish = (values: any) => {
-    fetch("http://localhost:3000/register", {
+    setGlobalState("loading", true);
+    fetch("http://localhost:9000/reg", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -20,15 +57,20 @@ const Register = () => {
         return response.json();
       })
       .then((e) => {
-        console.log(e);
-      })
-      .catch((err) => {
-        console.error(err);
+        setGlobalState("loading", false);
+        if (e === "true" || e === true) {
+          message.success("Account Created Successfully");
+          form.resetFields();
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+        }
       });
   };
 
   return (
     <div className="w-full flex justify-center my-10">
+      {text}
       <div className="flex w-[90%] h-full justify-center items-center  ">
         <Form
           form={form}
@@ -57,12 +99,21 @@ const Register = () => {
             label="Username"
             name="username"
             className="w-[90%]"
-            rules={[{ required: true, message: "Please input your Username!" }]}
+            rules={[
+              {
+                required: true,
+                message:
+                  "Please input your Username! Must be more then 5 letter",
+              },
+            ]}
+            validateStatus={validate}
           >
             <Input
               className="w-full"
               type="text"
-              placeholder="johndai1"
+              value={username}
+              onChange={checkUsername}
+              placeholder="johndai999"
               minLength={5}
             />
           </Form.Item>
@@ -109,7 +160,14 @@ const Register = () => {
           ) : null}
 
           <Form.Item className="w-[90%] flex justify-center items-center">
-            <Button type="primary" htmlType="submit" className="px-20">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="px-20"
+              disabled={
+                validate === "error" || username.length >= 5 ? true : false
+              }
+            >
               Submit
             </Button>
           </Form.Item>

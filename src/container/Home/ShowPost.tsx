@@ -13,7 +13,7 @@ const ShowPost = () => {
       })
       .then((res) => {
         setData(res.response);
-        console.log(res);
+        // console.log(res);
       });
   };
 
