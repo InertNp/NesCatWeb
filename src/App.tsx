@@ -32,12 +32,12 @@ function App() {
 
   return (
     <Spin spinning={loading} wrapperClassName="w-full h-full">
-      <Layout>
+      <Layout className="w-full">
         <Header className={`${theme.headerBg} ${theme.text} `}>
           <NavBar />
         </Header>
 
-        <Layout className="md:px-20 px-4 py-5">
+        <Layout className="md:px-20 w-full px-4 py-5">
           <Content className={` py-2 ${theme.headerBg} ${theme.text}`}>
             <Routes>
               <Route element={isLoggedIn ? <Home /> : <Login />} path="/*" />
