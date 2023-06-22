@@ -6,6 +6,7 @@ import UploadImg from "../container/AddPost/UploadImg";
 import TextEditor from "../container/AddPost/TextEditor";
 import TitleInput from "../container/AddPost/TitleInput";
 import { useNavigate } from "react-router-dom";
+import addPost from "../data/addPost";
 
 const AddPost = () => {
   const navigate = useNavigate();
@@ -13,22 +14,14 @@ const AddPost = () => {
   const [alert, alertText] = useMessage();
   function handleFinish(e: any) {
     setGlobalState("loading", true);
-    console.log(e);
     const value = {
       authorId: userData.id,
-      author: userData.name,
+      author: userData.username,
       title: e.title,
       des: e.des,
       imgUrl: e.upload?.response.data.name,
     };
-    fetch("http://localhost:9000/post", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(value),
-    })
+    addPost(value)
       .then((response) => {
         return response.json();
       })
@@ -41,9 +34,6 @@ const AddPost = () => {
         // console.log(e);
         alert.success("Posted Sucessfully");
         navigate("/home");
-      })
-      .catch((err) => {
-        console.log(err);
       });
   }
 

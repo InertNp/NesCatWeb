@@ -7,6 +7,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
   currentUser: {} as any,
   loginError: undefined,
   loading: true,
+  refreshPost: true,
 });
 
 export { setGlobalState, useGlobalState };

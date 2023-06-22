@@ -1,13 +1,14 @@
 import { List } from "antd";
-import { setGlobalState } from "../../hooks/GlobalHooks";
-import ListPost, { dataType } from "./ListPost";
+import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
+import { PostBox, dataType } from "./PostBox";
 import { useEffect, useState } from "react";
+import showPosts from "../../data/showPosts";
 
 const ShowPost = () => {
   const [data, setData] = useState([]);
-
+  const [refreshPost] = useGlobalState("refreshPost");
   const fetchPosts = () => {
-    fetch(`http://localhost:9000/posts/`)
+    showPosts()
       .then((res) => {
         return res.json();
       })
@@ -19,7 +20,7 @@ const ShowPost = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [refreshPost]);
 
   return (
     <List
@@ -39,7 +40,7 @@ const ShowPost = () => {
         align: "center",
       }}
       dataSource={data}
-      renderItem={(item: dataType) => <ListPost {...item} />}
+      renderItem={(item: dataType) => <PostBox {...item} />}
     />
   );
 };

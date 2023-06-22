@@ -1,9 +1,11 @@
-import { DislikeFilled, LikeFilled, MoreOutlined } from "@ant-design/icons";
-import { Button, Image, List } from "antd";
+import { Image, List } from "antd";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
+import { descriptionComponent } from "../../utilities/truncatedDescription";
+import { Actions } from "./BoxActions";
+
 export interface dataType {
-  id?: number;
+  id: number;
   title: string;
   likes?: number;
   imgUrl?: string;
@@ -11,9 +13,10 @@ export interface dataType {
   author?: string;
   authorID?: number;
   description?: string;
+  date?: Date;
 }
 
-const ListPost = ({
+export const PostBox = ({
   id,
   title,
   likes,
@@ -21,30 +24,19 @@ const ListPost = ({
   author,
   description,
   imgUrl,
+  date,
 }: dataType) => {
+  const data = {
+    id: id,
+    title: title,
+    likes: likes,
+    authorID: authorID,
+    author: author,
+    date: date,
+  };
+
   return (
-    <List.Item
-      key={id}
-      actions={[
-        <div className="flex gap-2 justify-center items-center ">
-          <Button className="flex gap-2 justify-center items-center">
-            {likes}
-            <LikeFilled />
-          </Button>
-          <Button>
-            <DislikeFilled />
-          </Button>
-          <Button>
-            <MoreOutlined style={{ fontSize: "20px" }} />
-          </Button>
-          <Link
-            className="capitalize font-bold "
-            to={`profile/:${authorID}`}
-          >{`${author}`}</Link>
-          <p className="capitalize  ">{` Jan 2 ,1001 AD`}</p>
-        </div>,
-      ]}
-    >
+    <List.Item key={id} actions={[<Actions {...data} />]}>
       <div className="w-full h-full flex flex-col lg:flex-row items-start  justify-between   relative ">
         <p className="absolute top-0 right-0 lg:left-0 text-light text-sm">{`${id}`}</p>
         <div className="flex flex-col pt-10 ">
@@ -54,14 +46,13 @@ const ListPost = ({
           <div className="font-normal text-md overflow-hidden text-start w-full px-2">
             {description === null || description === undefined
               ? null
-              : parse(description)}
+              : parse(descriptionComponent(description))}
           </div>
+          <Link to={`/post/${id}`}>View More</Link>
         </div>
         {imgUrl === "undefined" || imgUrl === null ? null : (
           <Image
-            height={400}
-            width={400}
-            className="object-cover max-w-[200px] md:min-w-[300px] lg:min-w-[400px] "
+            className="object-cover max-w-[200px] md:min-w-[300px] lg:min-w-[300px] "
             alt="logo"
             src={`http://localhost:9000/img/${imgUrl}`}
           />
@@ -70,5 +61,3 @@ const ListPost = ({
     </List.Item>
   );
 };
-
-export default ListPost;

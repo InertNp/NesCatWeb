@@ -11,6 +11,7 @@ import Notify from "./Pages/Notify";
 import AddPost from "./Pages/AddPost";
 import Register from "./Pages/Register";
 import { useEffect } from "react";
+import ViewPost from "./Pages/ViewPost";
 export const theme = {
   headerBg: "bg-white",
   text: "text-black",
@@ -46,6 +47,7 @@ function App() {
                   <Route element={<Home />} path="/" />
                   <Route element={<Notify />} path="/notification" />
                   <Route element={<AddPost />} path="/addPost" />
+                  <Route element={<ViewPost />} path="/post/:id" />
                 </>
               ) : (
                 <>
