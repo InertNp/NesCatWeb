@@ -9,7 +9,7 @@ import { Avatar, Menu, MenuProps } from "antd";
 import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
 import { Link, useNavigate } from "react-router-dom";
 
-const navLink = `text-black text-md cursor-pointer flex justify-start capitalize items-center gap-1 hover:underline underline-offset-8 `;
+const navLink = `text-black text-md cursor-pointer flex justify-start capitalize items-center gap-1  `;
 
 const MenuLogIn = () => {
   const [currentUser] = useGlobalState("currentUser");
@@ -45,7 +45,7 @@ const MenuLogIn = () => {
     },
     {
       label: (
-        <Link className={navLink} to={`/users/${currentUser.username}`}>
+        <Link className={navLink} to={`/user/${currentUser.username}`}>
           <Avatar
             src={
               currentUser.imgUrl == null
