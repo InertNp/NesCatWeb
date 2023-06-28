@@ -5,6 +5,7 @@ import { useGlobalState } from "../../hooks/GlobalHooks";
 import deletePost from "../../data/deletePost";
 import { Link, useNavigate } from "react-router-dom";
 import { dataType } from "./PostBox";
+import { LinkedinFilled } from "@ant-design/icons";
 
 export function Actions({ id, likes, author, authorID }: dataType) {
   const [refreshPost, setRefreshPost] = useGlobalState("refreshPost");
@@ -28,14 +29,15 @@ export function Actions({ id, likes, author, authorID }: dataType) {
       });
   }
   return (
-    <div className="flex gap-2 justify-center items-center ">
+    <div className="flex flex-row  gap-2 justify-center items-center ">
       <Button className="flex gap-2 justify-center items-center">
         {likes}
-        <LikeFilled />
+        <LinkedinFilled />
       </Button>
       <Button>
         <DislikeFilled />
       </Button>
+      {/* delete button */}
       {currentUser.id === authorID ? (
         <Popover
           open={click}
@@ -65,12 +67,6 @@ export function Actions({ id, likes, author, authorID }: dataType) {
           </Button>
         </Popover>
       ) : null}
-
-      <Link
-        className="capitalize font-bold "
-        to={`profile/:${authorID}`}
-      >{`${author}`}</Link>
-      <p className="capitalize  ">{` Jan 2 ,1001 AD`}</p>
     </div>
   );
 }

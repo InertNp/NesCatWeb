@@ -7,7 +7,7 @@ import Home from "./Pages/Home";
 import { setGlobalState, useGlobalState } from "./hooks/GlobalHooks";
 
 import Login from "./Pages/Login";
-import Notify from "./Pages/Notify";
+
 import AddPost from "./Pages/AddPost";
 import Register from "./Pages/Register";
 import { useEffect } from "react";
@@ -39,14 +39,14 @@ function App() {
           <NavBar />
         </Header>
 
-        <Layout className="md:px-20 w-full px-4 py-5">
-          <Content className={` py-2 ${theme.headerBg} ${theme.text}`}>
+        <Layout className="md:px-20  px-4 py-5 ">
+          <Content className={` py-2 px-4 ${theme.headerBg} ${theme.text}`}>
             <Routes>
               <Route element={isLoggedIn ? <Home /> : <Login />} path="/*" />
               {isLoggedIn ? (
                 <>
                   <Route element={<Home />} path="/" />
-                  <Route element={<Notify />} path="/notification" />
+
                   <Route element={<AddPost />} path="/addPost" />
                   <Route element={<ViewPost />} path="/post/:id" />
                   <Route element={<UserDetail />} path="/user/:username" />

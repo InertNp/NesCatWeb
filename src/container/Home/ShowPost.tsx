@@ -24,7 +24,7 @@ const ShowPost = () => {
 
   return (
     <List
-      className="w-full h-full"
+      className="w-full "
       itemLayout="vertical"
       pagination={{
         onChange: () => {

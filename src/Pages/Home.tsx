@@ -2,7 +2,7 @@ import ShowPost from "../container/Home/ShowPost";
 
 const Home = () => {
   return (
-    <div className="px-10">
+    <div className="flex justify-center">
       <ShowPost />
     </div>
   );

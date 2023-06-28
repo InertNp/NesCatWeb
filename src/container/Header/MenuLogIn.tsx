@@ -1,7 +1,6 @@
 import {
   HomeFilled,
   MoreOutlined,
-  NotificationFilled,
   PlusOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
@@ -34,15 +33,7 @@ const MenuLogIn = () => {
       ),
       key: "add",
     },
-    {
-      label: (
-        <Link className={navLink} to={"/notification"}>
-          <NotificationFilled style={{ fontSize: "16px " }} />
-          notification
-        </Link>
-      ),
-      key: "notify",
-    },
+
     {
       label: (
         <Link className={navLink} to={`/user/${currentUser.username}`}>
@@ -100,7 +91,7 @@ const MenuLogIn = () => {
     <Menu
       mode="horizontal"
       items={itemLogin}
-      className="h-full flex justify-end items-center w-2/3 "
+      className="h-full flex justify-end items-center lg:w-2/3 w-1/3"
       overflowedIndicator={<MoreOutlined style={{ fontSize: "20px" }} />}
       forceSubMenuRender={true}
     />

@@ -27,11 +27,11 @@ const Login = () => {
         if (e === "false") {
           setError(true);
         } else {
-          const data = e[0];
-          localStorage.setItem("data", JSON.stringify(data));
+          console.log(e);
+          localStorage.setItem("data", JSON.stringify(e));
           localStorage.setItem("isLoggedIn", "true");
           setGlobalState("isLoggedIn", true);
-          setGlobalState("currentUser", data);
+          setGlobalState("currentUser", e);
           navigate("/");
         }
         setGlobalState("loading", false);
