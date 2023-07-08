@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+html,body{
     margin: 0;
     padding: 0;
-  
-    overflow-x: hidden;
+ 
+    
 }
 .border{
     border: solid 2px red !important;
@@ -28,3 +28,9 @@ body{
     resize: none !important;
   }
 
+.border-top{
+    border-top: 1px solid gray;
+  }
+.border-bot{
+    border-bottom: 1px solid gray;
+  }

@@ -3,17 +3,20 @@ import { Button, Popover, message } from "antd";
 import { useState } from "react";
 import { useGlobalState } from "../../hooks/GlobalHooks";
 import deletePost from "../../data/deletePost";
-import { Link, useNavigate } from "react-router-dom";
-import { dataType } from "./PostBox";
-import { LinkedinFilled } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
-export function Actions({ id, likes, author, authorID }: dataType) {
+interface dataType {
+  postId: number;
+  username?: string;
+}
+
+export function Actions({ postId, username }: dataType) {
   const [refreshPost, setRefreshPost] = useGlobalState("refreshPost");
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [currentUser] = useGlobalState("currentUser");
   function handleDelete() {
-    deletePost(id)
+    deletePost(postId)
       .then((res) => {
         return res.json();
       })
@@ -31,14 +34,14 @@ export function Actions({ id, likes, author, authorID }: dataType) {
   return (
     <div className="flex flex-row  gap-2 justify-center items-center ">
       <Button className="flex gap-2 justify-center items-center">
-        {likes}
-        <LinkedinFilled />
+        {/* {likes} */}
+        <LikeFilled />
       </Button>
       <Button>
         <DislikeFilled />
       </Button>
       {/* delete button */}
-      {currentUser.id === authorID ? (
+      {currentUser.username === username ? (
         <Popover
           open={click}
           content={

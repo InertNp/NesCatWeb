@@ -15,10 +15,9 @@ const AddPost = () => {
   function handleFinish(e: any) {
     setGlobalState("loading", true);
     const value = {
-      authorId: userData.id,
-      author: userData.username,
-      title: e.title,
-      des: e.des,
+      username: userData.username,
+      topic: e.title,
+      content: e.content,
       imgUrl: e.upload?.response.data.name,
     };
     addPost(value)
@@ -30,10 +29,9 @@ const AddPost = () => {
         if (e === "false") {
           alert.error("Your post was not uploaded");
         } else {
+          alert.success("Posted Sucessfully");
+          navigate("/home");
         }
-        // console.log(e);
-        alert.success("Posted Sucessfully");
-        navigate("/home");
       });
   }
 

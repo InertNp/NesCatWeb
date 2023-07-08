@@ -5,9 +5,10 @@ import { setGlobalState } from "../hooks/GlobalHooks";
 
 const UserDetail = () => {
   const { username } = useParams();
-  console.log(username);
+
   const [info, setInfo] = useState([]);
   function fetchData() {
+    setGlobalState("loading", true);
     fetch("http://localhost:9000/userInfo", {
       method: "POST",
       headers: {
@@ -20,17 +21,15 @@ const UserDetail = () => {
         return response.json();
       })
       .then((e) => {
-        console.log(e);
+        setInfo(e);
       });
   }
 
   useEffect(() => {
     fetchData();
     setGlobalState("loading", false);
-    // return setGlobalState("loading", true);
-  });
-  console.log(username);
-  return <div>"somtehitng"</div>;
-};
+  }, []);
 
+  return <UserLayout data={info} />;
+};
 export default UserDetail;

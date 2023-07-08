@@ -10,11 +10,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 const navLink = `text-black text-md cursor-pointer flex justify-start capitalize items-center gap-1  `;
 
-const MenuLogIn = () => {
+const MenuLogInAdmin = () => {
   const [currentUser] = useGlobalState("currentUser");
-  console.log(currentUser);
+
   const navigate = useNavigate();
   const itemLogin: MenuProps["items"] = [
+    {
+      label: (
+        <Link className={navLink} to={"/dashboard"}>
+          Dashboard
+        </Link>
+      ),
+      key: "dash",
+    },
     {
       label: (
         <Link className={navLink} to={"/"}>
@@ -98,4 +106,4 @@ const MenuLogIn = () => {
   );
 };
 
-export default MenuLogIn;
+export default MenuLogInAdmin;

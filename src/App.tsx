@@ -13,6 +13,8 @@ import Register from "./Pages/Register";
 import { useEffect } from "react";
 import ViewPost from "./Pages/ViewPost";
 import UserDetail from "./Pages/UserDetail";
+import Dashboard from "./Pages/Dashboard";
+import Setting from "./Pages/Setting";
 export const theme = {
   headerBg: "bg-white",
   text: "text-black",
@@ -33,20 +35,21 @@ function App() {
   }, []);
 
   return (
-    <Spin spinning={loading} wrapperClassName="w-full h-full">
-      <Layout className="w-full">
+    <Spin spinning={loading} wrapperClassName="w-full  h-full  ">
+      <Layout className="w-full ">
         <Header className={`${theme.headerBg} ${theme.text} `}>
           <NavBar />
         </Header>
 
-        <Layout className="md:px-20  px-4 py-5 ">
-          <Content className={` py-2 px-4 ${theme.headerBg} ${theme.text}`}>
+        <Layout className="md:px-20 h-full w-full px-4 py-5 overflow-auto bg-slate-200 ">
+          <Content className={` py-2 px-4 bg-white ${theme.text} `}>
             <Routes>
               <Route element={isLoggedIn ? <Home /> : <Login />} path="/*" />
               {isLoggedIn ? (
                 <>
                   <Route element={<Home />} path="/" />
-
+                  <Route element={<Setting />} path="/setting" />
+                  <Route element={<Dashboard />} path="/dashboard" />
                   <Route element={<AddPost />} path="/addPost" />
                   <Route element={<ViewPost />} path="/post/:id" />
                   <Route element={<UserDetail />} path="/user/:username" />

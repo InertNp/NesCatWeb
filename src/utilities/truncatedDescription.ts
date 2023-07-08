@@ -1,5 +1,5 @@
-export function descriptionComponent(description: string) {
-  const maxLimit = 500;
+export function contentComponent(description: string) {
+  const maxLimit = 100;
   let truncatedDescription = description;
 
   if (description.length > maxLimit) {

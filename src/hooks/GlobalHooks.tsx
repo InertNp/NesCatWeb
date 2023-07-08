@@ -8,6 +8,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
   loginError: undefined,
   loading: true,
   refreshPost: true,
+  refreshComment: true,
 });
 
 export { setGlobalState, useGlobalState };

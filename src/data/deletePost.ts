@@ -7,12 +7,7 @@ const deletePost = (postId: number) => {
     },
     body: JSON.stringify({ postId }),
   });
-  //   .then((response) => {
-  //     return response.json();
-  //   });
-  // .then((e) => {
-  //   return e;
-  // });
+
   return res;
 };
 
