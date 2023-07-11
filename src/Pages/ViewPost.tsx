@@ -15,9 +15,9 @@ const ViewPost = () => {
           setAuthor(e);
         }}
       />
-      <div className="border-top border-bot p-10">
-        <CommentBox id={id} />
-      </div>
+
+      <CommentBox id={id} />
+
       <Comments id={id} author={author} />
     </div>
   );

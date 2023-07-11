@@ -1,16 +1,21 @@
 import { DeleteOutlined, DislikeFilled, LikeFilled } from "@ant-design/icons";
 import { Button, Popover, message } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGlobalState } from "../../hooks/GlobalHooks";
 import deletePost from "../../data/deletePost";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import likePost from "../../data/likePost";
 
 interface dataType {
   postId: number;
   username?: string;
+  likes?: number;
 }
 
-export function Actions({ postId, username }: dataType) {
+export function Actions({ postId, username, likes }: dataType) {
+  const [likesonPost, setLikes] = useState(likes || 0);
+  const [liked, setLiked] = useState(false);
   const [refreshPost, setRefreshPost] = useGlobalState("refreshPost");
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
@@ -31,15 +36,35 @@ export function Actions({ postId, username }: dataType) {
         }
       });
   }
+  useEffect(() => {
+    axios
+      .post("http://localhost:9000/checkLike", {
+        id: JSON.stringify(postId),
+        username: JSON.stringify(currentUser.username),
+      })
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data) {
+          setLiked(true);
+        }
+      });
+  }, []);
   return (
     <div className="flex flex-row  gap-2 justify-center items-center ">
-      <Button className="flex gap-2 justify-center items-center">
-        {/* {likes} */}
-        <LikeFilled />
+      <Button
+        onClick={() => {
+          const username = currentUser.username;
+          likePost({ postId, username });
+          setLikes(likesonPost + 1);
+          setLiked(true);
+        }}
+        className={`flex gap-2 justify-center items-center`}
+        disabled={liked}
+      >
+        {likesonPost == 0 ? null : likesonPost}
+        <LikeFilled className={`${!liked ? "text-black" : "text-blue-800"}`} />
       </Button>
-      <Button>
-        <DislikeFilled />
-      </Button>
+
       {/* delete button */}
       {currentUser.username === username ? (
         <Popover

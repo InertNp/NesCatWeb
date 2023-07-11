@@ -12,7 +12,7 @@ const navLink = `text-black text-md cursor-pointer flex justify-start capitalize
 
 const MenuLogIn = () => {
   const [currentUser] = useGlobalState("currentUser");
-  console.log(currentUser);
+
   const navigate = useNavigate();
   const itemLogin: MenuProps["items"] = [
     {

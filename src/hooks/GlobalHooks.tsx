@@ -9,6 +9,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
   loading: true,
   refreshPost: true,
   refreshComment: true,
+  hide: false,
 });
 
 export { setGlobalState, useGlobalState };

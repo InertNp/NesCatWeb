@@ -27,7 +27,7 @@ const Login = () => {
         if (e === "false") {
           setError(true);
         } else {
-          console.log(e);
+          // console.log(e);
           localStorage.setItem("data", JSON.stringify(e));
           localStorage.setItem("isLoggedIn", "true");
           setGlobalState("isLoggedIn", true);
