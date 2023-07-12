@@ -6,7 +6,6 @@ import UploadImg from "../container/AddPost/UploadImg";
 import TextEditor from "../container/AddPost/TextEditor";
 import TitleInput from "../container/AddPost/TitleInput";
 import { useNavigate } from "react-router-dom";
-import addPost from "../data/addPost";
 import axios from "axios";
 
 const AddPost = () => {

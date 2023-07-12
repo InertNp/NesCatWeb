@@ -1,4 +1,4 @@
-import { Button, Descriptions, Image } from "antd";
+import { Descriptions, Image } from "antd";
 import { useGlobalState } from "../hooks/GlobalHooks";
 import ChangePassword from "../container/Settings/ChangePassword";
 import ChangeAvatar from "../container/Settings/ChangeAvatar";
