@@ -7,32 +7,34 @@ import TextEditor from "../container/AddPost/TextEditor";
 import TitleInput from "../container/AddPost/TitleInput";
 import { useNavigate } from "react-router-dom";
 import addPost from "../data/addPost";
+import axios from "axios";
 
 const AddPost = () => {
   const navigate = useNavigate();
   const [userData] = useGlobalState("currentUser");
   const [alert, alertText] = useMessage();
   function handleFinish(e: any) {
-    setGlobalState("loading", true);
+    // setGlobalState("loading", true);
+    const sqlContent = e.content.replace("'", "\\'");
+    const final = sqlContent.replace('"', '\\"');
+
     const value = {
       username: userData.username,
       topic: e.title,
-      content: e.content,
+      content: final,
       imgUrl: e.upload?.response.data.name,
     };
-    addPost(value)
-      .then((response) => {
-        return response.json();
-      })
-      .then((e) => {
-        setGlobalState("loading", false);
-        if (e === "false") {
-          alert.error("Your post was not uploaded");
-        } else {
-          alert.success("Posted Sucessfully");
-          navigate("/home");
-        }
-      });
+
+    axios.post("http://localhost:9000/post", { ...value }).then((e: any) => {
+      console.log(e);
+      setGlobalState("loading", false);
+      if (e.data === false) {
+        alert.error("Your post was not uploaded");
+      } else {
+        alert.success("Posted Sucessfully");
+        navigate("/home");
+      }
+    });
   }
 
   return (

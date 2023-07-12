@@ -2,6 +2,7 @@ import { Button, Form, Input, Popover, message } from "antd";
 import axios from "axios";
 import { useGlobalState } from "../../hooks/GlobalHooks";
 import { useState } from "react";
+import { regexpPass } from "../../utilities/passwordRegx";
 
 const ChangePassword = () => {
   const [form] = Form.useForm();
@@ -54,6 +55,11 @@ const ChangePassword = () => {
               rules={[
                 { required: true, message: "Please input your new Password" },
                 { min: 5, message: "Password must be minimum 5 character" },
+                {
+                  pattern: regexpPass,
+                  message:
+                    "Password must include atleast 1 uppcase,number and special character",
+                },
               ]}
             >
               <Input />

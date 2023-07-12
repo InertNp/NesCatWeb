@@ -25,7 +25,7 @@ const UserLayout = ({ data }: any) => {
           )}
         </div>
         <div className="basis-2/3 flex justify-center items-center py-10 px-5 ">
-          <Descriptions title={data.username}>
+          <Descriptions title={data.username} column={1}>
             <Descriptions.Item label="Phone">Null</Descriptions.Item>
             <Descriptions.Item label="Address">Null</Descriptions.Item>
             <Descriptions.Item label="Status">Null</Descriptions.Item>

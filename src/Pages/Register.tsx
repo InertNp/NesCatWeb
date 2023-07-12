@@ -5,6 +5,7 @@ import { useState } from "react";
 import { setGlobalState } from "../hooks/GlobalHooks";
 import useMessage from "antd/es/message/useMessage";
 import { useNavigate } from "react-router-dom";
+import { regexpPass } from "../utilities/passwordRegx";
 
 type vali = "success" | "" | "error";
 
@@ -86,14 +87,12 @@ const Register = () => {
             label="Name"
             name="name"
             className="w-[90%]"
-            rules={[{ required: true, message: "Please input your name!" }]}
+            rules={[
+              { required: true, message: "Please input your name!" },
+              { min: 5, message: "Must be more than 5 characters" },
+            ]}
           >
-            <Input
-              className="w-full"
-              type="text"
-              placeholder="John doe"
-              minLength={5}
-            />
+            <Input className="w-full" type="text" placeholder="John doe" />
           </Form.Item>
           <Form.Item
             label="Username"
@@ -105,6 +104,7 @@ const Register = () => {
                 message:
                   "Please input your Username! Must be more then 5 letter",
               },
+              { min: 5, message: "Must be more than 5 characters" },
             ]}
             validateStatus={validate}
           >
@@ -113,35 +113,42 @@ const Register = () => {
               type="text"
               value={username}
               onChange={checkUsername}
-              placeholder="johndai999"
-              minLength={5}
+              placeholder="johndoe999"
             />
           </Form.Item>
           <Form.Item
             label="Email"
             name="email"
             className="w-[90%]"
-            rules={[{ required: true, message: "Please input your Email!" }]}
+            rules={[
+              {
+                type: "email",
+                message: "Enter Correct Email format abc@abc.com ",
+              },
+              { required: true, message: "Input your email ." },
+            ]}
           >
-            <Input
-              className="w-full"
-              type="email"
-              placeholder="abc123@abc.com"
-              minLength={5}
-            />
+            <Input className="w-full" placeholder="abc123@abc.com" />
           </Form.Item>
 
           <Form.Item
             label="Password"
             name="password"
             className="w-[90%]"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            rules={[
+              {
+                pattern: regexpPass,
+                message:
+                  "Password must include atleast 1 uppcase,number and special character",
+              },
+              {
+                required: true,
+                min: 5,
+                message: "Password must be more then 5 characters",
+              },
+            ]}
           >
-            <Input.Password
-              className="w-full"
-              placeholder="Password"
-              minLength={6}
-            />
+            <Input.Password className="w-full" placeholder="Password" />
           </Form.Item>
 
           {error ? (
