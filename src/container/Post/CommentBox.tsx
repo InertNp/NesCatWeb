@@ -80,7 +80,7 @@ const CommentBox = ({ id }: data) => {
         username: JSON.stringify(currentUser.username),
       })
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setHide(response.data);
       });
   }, []);

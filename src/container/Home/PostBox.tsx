@@ -52,7 +52,8 @@ export const PostBox = ({
       </div>
       {imgUrl === "undefined" || imgUrl === null ? null : (
         <Image
-          className="object-cover max-w-[400px]"
+          className="object-contain"
+          height={400}
           alt="logo"
           src={`http://localhost:9000/img/${imgUrl}`}
         />

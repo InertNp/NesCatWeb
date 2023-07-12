@@ -6,10 +6,10 @@ const TextEditor = () => {
     <Form.Item
       label=""
       name={"content"}
-      className="px-4 w-full h-[300px]  "
+      className="w-full"
       rules={[{ required: true, message: "Please Add some Content" }]}
     >
-      <ReactQuill className="h-[200px] " />
+      <ReactQuill className="my-10 h-60" />
     </Form.Item>
   );
 };

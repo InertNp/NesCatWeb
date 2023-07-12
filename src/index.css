@@ -34,3 +34,6 @@ html,body{
 .border-bot{
     border-bottom: 1px solid gray;
   }
+.border-image{
+    border:1px dashed gray; 
+}

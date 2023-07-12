@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { DeleteOutlined, LikeFilled } from "@ant-design/icons";
 import { useGlobalState } from "../../hooks/GlobalHooks";
 import deletePost from "../../data/deletePost";
+import axios from "axios";
+import likePost from "../../data/likePost";
 interface dataprop {
   id: any;
   author: Function;
@@ -19,7 +21,8 @@ interface dataType {
 }
 const Post = ({ id, author }: dataprop) => {
   const [data, setData] = useState({} as dataType);
-
+  const [likesonPost, setLikes] = useState(0);
+  const [liked, setLiked] = useState(false);
   const [click, setClick] = useState(false);
   const [currentUser] = useGlobalState("currentUser");
   const navigate = useNavigate();
@@ -41,6 +44,7 @@ const Post = ({ id, author }: dataprop) => {
         } else {
           setData(e);
           author(e?.username);
+          setLikes(e.likes);
         }
       });
   }
@@ -61,19 +65,22 @@ const Post = ({ id, author }: dataprop) => {
   }
   useEffect(() => {
     fetchPost();
+    axios
+      .post("http://localhost:9000/checkLike", {
+        id: JSON.stringify(id),
+        username: JSON.stringify(currentUser.username),
+      })
+      .then(function (response) {
+        if (response.data) {
+          setLiked(true);
+        }
+      });
   }, []);
+
   const showDate = new Date(data.created_date || "");
   return (
     <div className="w-full  flex flex-col gap-2 ">
       <h1 className="text-5xl m-0">{data?.topic}</h1>
-      <div className=" flex gap-2">
-        <Link to={`/user/${data.username}`}>{data?.username}</Link>
-        {showDate.toLocaleDateString("en-us", {
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-        })}
-      </div>
 
       <div className="mx-2">
         {data.content === null || data.content === undefined
@@ -87,14 +94,35 @@ const Post = ({ id, author }: dataprop) => {
           <Image
             className="object-cover"
             alt="logo"
+            height={500}
             src={`http://localhost:9000/img/${data.imgUrl}`}
           />
         )}
       </div>
-      <div className="flex flex-row gap-2 my-4">
-        <Button className="flex justify-center items-center gap-1">
-          {data.likes}
-          <LikeFilled />
+      <div className=" flex gap-2 mt-5">
+        <Link to={`/user/${data.username}`}>{data?.username}</Link>
+        {showDate.toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+        })}
+      </div>
+      <div className="flex flex-row gap-2 mt-2">
+        <Button
+          className="flex justify-center items-center gap-1"
+          disabled={liked}
+          onClick={() => {
+            const username = currentUser.username;
+            const postId = id;
+            likePost({ postId, username });
+            setLikes(likesonPost + 1);
+            setLiked(true);
+          }}
+        >
+          {likesonPost == 0 ? null : likesonPost}
+          <LikeFilled
+            className={`${!liked ? "text-black" : "text-blue-800"}`}
+          />
         </Button>
         {currentUser.username === data.username ? (
           <Popover

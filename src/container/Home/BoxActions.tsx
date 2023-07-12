@@ -43,7 +43,7 @@ export function Actions({ postId, username, likes }: dataType) {
         username: JSON.stringify(currentUser.username),
       })
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data) {
           setLiked(true);
         }

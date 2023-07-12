@@ -10,10 +10,18 @@ const UserLayout = ({ data }: any) => {
           data.imgUrl === null ? (
             <Image
               src="http://localhost:9000/img/avatar.jpg "
-              className="object-cover w-full h-full"
+              className="object-cover"
+              width={400}
+              height={400}
             />
           ) : (
-            <Image src={`http://localhost:9000/img/${data.imgUrl}`} />
+            <Image
+              className="object-cover "
+              src={`http://localhost:9000/img/${data.imgUrl}`}
+              fallback={`http://localhost:9000/img/avatar.jpg`}
+              width={400}
+              height={400}
+            />
           )}
         </div>
         <div className="basis-2/3 flex justify-center items-center py-10 px-5 ">
