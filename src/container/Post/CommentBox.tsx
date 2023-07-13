@@ -4,6 +4,7 @@ import { useGlobalState } from "../../hooks/GlobalHooks";
 import TextEditor from "../AddPost/TextEditor";
 import { useEffect } from "react";
 import axios from "axios";
+import { url } from "../../data/url";
 interface data {
   id: any;
 }
@@ -25,7 +26,7 @@ const CommentBox = ({ id }: data) => {
           postId: postId,
           content: content,
         };
-        fetch("http://localhost:9000/comment", {
+        fetch(`${url}/comment`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -50,7 +51,7 @@ const CommentBox = ({ id }: data) => {
           postId: postId,
           content: content,
         };
-        fetch("http://localhost:9000/comment", {
+        fetch(`${url}/comment`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -75,7 +76,7 @@ const CommentBox = ({ id }: data) => {
   }
   useEffect(() => {
     axios
-      .post("http://localhost:9000/checkComment", {
+      .post(`${url}/checkComment`, {
         id: JSON.stringify(id),
         username: JSON.stringify(currentUser.username),
       })
@@ -99,7 +100,7 @@ const CommentBox = ({ id }: data) => {
           <FormItem name={"avatar"}>
             <Upload
               name="avatar" //key for uplading
-              action="http://localhost:9000/img"
+              action={`${url}/img`}
               method={"post"}
               listType="text"
               maxCount={1}

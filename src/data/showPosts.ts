@@ -1,5 +1,7 @@
+import { url } from "./url";
+
 const showPosts = () => {
-  const res = fetch(`http://localhost:9000/posts/`);
+  const res = fetch(`${url}/posts/`);
   return res;
 };
 

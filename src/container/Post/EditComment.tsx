@@ -3,6 +3,7 @@ import axios from "axios";
 
 import ReactQuill from "react-quill";
 import { useGlobalState } from "../../hooks/GlobalHooks";
+import { url } from "../../data/url";
 
 const EditComment = ({ data }: any) => {
   const [refreshComment, setRefreshComment] = useGlobalState("refreshComment");
@@ -11,7 +12,7 @@ const EditComment = ({ data }: any) => {
       layout="vertical"
       onFinish={(e) => {
         axios
-          .post("http://localhost:9000/updateComment", {
+          .post(`${url}/updateComment`, {
             id: JSON.stringify(data.commentId),
             content: e.content,
           })

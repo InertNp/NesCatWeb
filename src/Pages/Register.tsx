@@ -6,6 +6,7 @@ import { setGlobalState } from "../hooks/GlobalHooks";
 import useMessage from "antd/es/message/useMessage";
 import { useNavigate } from "react-router-dom";
 import { regexpPass, usernameRegexp } from "../utilities/passwordRegx";
+import { url } from "../data/url";
 
 type vali = "success" | "" | "error";
 
@@ -24,7 +25,7 @@ const Register = () => {
     };
 
     if (userlength.length >= 5) {
-      fetch("http://localhost:9000/checkUsername", {
+      fetch(`${url}/checkUsername`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -46,7 +47,7 @@ const Register = () => {
   }
   const onFinish = (values: any) => {
     setGlobalState("loading", true);
-    fetch("http://localhost:9000/reg", {
+    fetch(`${url}/reg`, {
       method: "POST",
       headers: {
         Accept: "application/json",

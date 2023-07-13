@@ -7,6 +7,7 @@ import { useGlobalState } from "../../hooks/GlobalHooks";
 import deletePost from "../../data/deletePost";
 import axios from "axios";
 import likePost from "../../data/likePost";
+import { url } from "../../data/url";
 interface dataprop {
   id: any;
   author: Function;
@@ -27,7 +28,7 @@ const Post = ({ id, author }: dataprop) => {
   const [currentUser] = useGlobalState("currentUser");
   const navigate = useNavigate();
   function fetchPost() {
-    fetch("http://localhost:9000/fullpost", {
+    fetch(`${url}/fullpost`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -66,7 +67,7 @@ const Post = ({ id, author }: dataprop) => {
   useEffect(() => {
     fetchPost();
     axios
-      .post("http://localhost:9000/checkLike", {
+      .post(`${url}/checkLike`, {
         id: JSON.stringify(id),
         username: JSON.stringify(currentUser.username),
       })
@@ -95,7 +96,7 @@ const Post = ({ id, author }: dataprop) => {
             className="object-cover"
             alt="logo"
             height={500}
-            src={`http://localhost:9000/img/${data.imgUrl}`}
+            src={`${url}/img/${data.imgUrl}`}
           />
         )}
       </div>

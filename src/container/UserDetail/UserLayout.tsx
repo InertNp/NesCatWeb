@@ -1,4 +1,5 @@
 import { Descriptions, Image } from "antd";
+import { url } from "../../data/url";
 
 const UserLayout = ({ data }: any) => {
   // console.log(data);
@@ -10,7 +11,7 @@ const UserLayout = ({ data }: any) => {
           data.imgUrl === undefined ||
           data.imgUrl === null ? (
             <Image
-              src="http://localhost:9000/img/avatar.jpg "
+              src={`${url}/img/avatar.jpg `}
               className="object-cover"
               width={400}
               height={400}
@@ -18,8 +19,8 @@ const UserLayout = ({ data }: any) => {
           ) : (
             <Image
               className="object-cover "
-              src={`http://localhost:9000/img/${data.imgUrl}`}
-              fallback={`http://localhost:9000/img/avatar.jpg`}
+              src={`${url}/img/${data.imgUrl}`}
+              fallback={`${url}/img/avatar.jpg`}
               width={400}
               height={400}
             />

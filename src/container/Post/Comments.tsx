@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useGlobalState } from "../../hooks/GlobalHooks";
 
 import ListItem from "./ListItem";
+import { url } from "../../data/url";
 interface datatype {
   id: any;
   author: string;
@@ -12,7 +13,7 @@ const Comments = ({ id, author }: datatype) => {
 
   const [refreshComment] = useGlobalState("refreshComment");
   function fetchComment() {
-    fetch("http://localhost:9000/comments", {
+    fetch(`${url}/comments`, {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -2,6 +2,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Form, Image, Upload, message } from "antd";
 import { RcFile } from "antd/es/upload";
 import { useState } from "react";
+import { url } from "../../data/url";
 
 const UploadImg = () => {
   const [upload, setUpload] = useState<string>();
@@ -29,7 +30,7 @@ const UploadImg = () => {
       <Upload
         beforeUpload={beforeUpload}
         name="avatar" //key for uplading
-        action="http://localhost:9000/img"
+        action={`${url}/img`}
         method={"post"}
         maxCount={1}
         showUploadList={false}
@@ -47,7 +48,7 @@ const UploadImg = () => {
       >
         {loadimg ? (
           <Image
-            src={`http://localhost:9000/img/${upload}`}
+            src={`${url}/img/${upload}`}
             className="object-cover"
             width={180}
             height={180}

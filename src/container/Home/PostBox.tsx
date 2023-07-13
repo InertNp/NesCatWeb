@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import { Actions } from "./BoxActions";
 import { contentComponent } from "../../utilities/truncatedDescription";
+import { url } from "../../data/url";
 
 export interface dataType {
   postId: number;
@@ -61,7 +62,7 @@ export const PostBox = ({
           className="object-contain"
           height={400}
           alt="logo"
-          src={`http://localhost:9000/img/${imgUrl}`}
+          src={`${url}/img/${imgUrl}`}
         />
       )}
       <div className="w-full flex gap-2 items-center justify-start ">

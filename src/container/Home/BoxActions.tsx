@@ -6,6 +6,7 @@ import deletePost from "../../data/deletePost";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import likePost from "../../data/likePost";
+import { url } from "../../data/url";
 
 interface dataType {
   postId: number;
@@ -38,7 +39,7 @@ export function Actions({ postId, username, likes }: dataType) {
   }
   useEffect(() => {
     axios
-      .post("http://localhost:9000/checkLike", {
+      .post(`${url}/checkLike`, {
         id: JSON.stringify(postId),
         username: JSON.stringify(currentUser.username),
       })

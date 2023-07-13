@@ -7,6 +7,7 @@ import {
 import { Avatar, Menu, MenuProps } from "antd";
 import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
 import { Link, useNavigate } from "react-router-dom";
+import { url } from "../../data/url";
 
 const navLink = `text-black text-md cursor-pointer flex justify-start capitalize items-center gap-1  `;
 
@@ -48,8 +49,8 @@ const MenuLogInAdmin = () => {
           <Avatar
             src={
               currentUser.imgUrl == null
-                ? `http://localhost:9000/img/avatar.jpg`
-                : `http://localhost:9000/img/${currentUser.imgUrl}`
+                ? `${url}/img/avatar.jpg`
+                : `${url}/img/${currentUser.imgUrl}`
             }
           />
           {currentUser?.username}

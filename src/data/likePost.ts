@@ -1,11 +1,12 @@
 import axios from "axios";
+import { url } from "./url";
 interface propType {
   postId: number;
   username: string;
 }
 const likePost = ({ postId, username }: propType) => {
   axios
-    .post("http://localhost:9000/like", {
+    .post(`${url}/like`, {
       id: JSON.stringify(postId),
       username: JSON.stringify(username),
     })

@@ -1,5 +1,5 @@
 import { List } from "antd";
-import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
+import { useGlobalState } from "../../hooks/GlobalHooks";
 import { PostBox, dataType } from "./PostBox";
 import { useEffect, useState } from "react";
 import showPosts from "../../data/showPosts";

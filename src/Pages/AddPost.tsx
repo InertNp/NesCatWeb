@@ -7,6 +7,7 @@ import TextEditor from "../container/AddPost/TextEditor";
 import TitleInput from "../container/AddPost/TitleInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { url } from "../data/url";
 
 const AddPost = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const AddPost = () => {
       imgUrl: e.upload?.response.data.name,
     };
 
-    axios.post("http://localhost:9000/post", { ...value }).then((e: any) => {
+    axios.post(`${url}/post`, { ...value }).then((e: any) => {
       console.log(e);
       setGlobalState("loading", false);
       if (e.data === false) {

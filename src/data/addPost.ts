@@ -1,5 +1,7 @@
+import { url } from "./url";
+
 const addPost = (value: any) => {
-  const res = fetch("http://localhost:9000/post", {
+  const res = fetch(`${url}/post`, {
     method: "POST",
     headers: {
       Accept: "application/json",

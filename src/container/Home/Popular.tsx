@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { url } from "../../data/url";
 
 const Popular = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:9000/popular").then(function (response) {
+    axios.get(`${url}/popular`).then(function (response) {
       setData(response.data);
     });
   }, []);

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserLayout from "../container/UserDetail/UserLayout";
 import { setGlobalState } from "../hooks/GlobalHooks";
+import { url } from "../data/url";
 
 const UserDetail = () => {
   const { username } = useParams();
@@ -9,7 +10,7 @@ const UserDetail = () => {
   const [info, setInfo] = useState([]);
   function fetchData() {
     setGlobalState("loading", true);
-    fetch("http://localhost:9000/userInfo", {
+    fetch(`${url}/userInfo`, {
       method: "POST",
       headers: {
         Accept: "application/json",

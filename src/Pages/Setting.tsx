@@ -2,6 +2,7 @@ import { Descriptions, Image } from "antd";
 import { useGlobalState } from "../hooks/GlobalHooks";
 import ChangePassword from "../container/Settings/ChangePassword";
 import ChangeAvatar from "../container/Settings/ChangeAvatar";
+import { url } from "../data/url";
 
 const Setting = () => {
   const [currentUser] = useGlobalState("currentUser");
@@ -13,7 +14,7 @@ const Setting = () => {
         currentUser.imgUrl === undefined ||
         currentUser.imgUrl === null ? (
           <Image
-            src="http://localhost:9000/img/avatar.jpg "
+            src={`${url}/img/avatar.jpg `}
             className="object-cover"
             width={400}
             height={400}
@@ -21,8 +22,8 @@ const Setting = () => {
         ) : (
           <Image
             className="object-cover "
-            src={`http://localhost:9000/img/${currentUser.imgUrl}`}
-            fallback={`http://localhost:9000/img/avatar.jpg`}
+            src={`${url}/img/${currentUser.imgUrl}`}
+            fallback={`${url}/img/avatar.jpg`}
             width={400}
             height={400}
           />

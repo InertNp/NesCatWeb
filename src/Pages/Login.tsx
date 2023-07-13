@@ -4,6 +4,7 @@ import { setGlobalState } from "../hooks/GlobalHooks";
 import { useForm } from "antd/es/form/Form";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { url } from "../data/url";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Login = () => {
   const [error, setError] = useState(false);
   const onFinish = (values: any) => {
     setGlobalState("loading", true);
-    fetch("http://localhost:9000/login", {
+    fetch(`${url}/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",

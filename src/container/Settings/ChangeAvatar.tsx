@@ -2,6 +2,7 @@ import { Button, Upload, message } from "antd";
 import { RcFile } from "antd/es/upload";
 import axios from "axios";
 import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
+import { url } from "../../data/url";
 
 const ChangeAvatar = () => {
   const [currentUser, setCurrentUser] = useGlobalState("currentUser");
@@ -20,7 +21,7 @@ const ChangeAvatar = () => {
   return (
     <Upload
       name="avatar" //key for uplading
-      action="http://localhost:9000/img"
+      action={`${url}/img`}
       method={"post"}
       listType="text"
       showUploadList={false}
@@ -31,7 +32,7 @@ const ChangeAvatar = () => {
           const imageUrl = e.file.response?.data.name;
           setGlobalState("loading", true);
           axios
-            .post("http://localhost:9000/changeAvatar", {
+            .post(`${url}/changeAvatar`, {
               userId: currentUser.userId,
               imageUrl: JSON.stringify(imageUrl),
             })

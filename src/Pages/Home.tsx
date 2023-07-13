@@ -5,6 +5,7 @@ import { useGlobalState } from "../hooks/GlobalHooks";
 import axios from "axios";
 import { dateCreate } from "../utilities/DateCreate";
 import { message } from "antd";
+import { url } from "../data/url";
 
 const Home = () => {
   const [currentUser] = useGlobalState("currentUser");
@@ -13,7 +14,7 @@ const Home = () => {
     const date = dateCreate();
 
     axios
-      .post("http://localhost:9000/online", {
+      .post(`${url}/online`, {
         id: JSON.stringify(currentUser.userId),
         date: date,
       })

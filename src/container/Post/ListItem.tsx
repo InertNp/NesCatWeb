@@ -6,6 +6,7 @@ import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import EditComment from "./EditComment";
+import { url } from "../../data/url";
 
 interface itemProp {
   author?: string;
@@ -25,7 +26,7 @@ const ListItem = ({ item }: itemProp) => {
   // console.log(currentUser);
   function handleDelete(id: number) {
     axios
-      .post("http://localhost:9000/deleteComment", {
+      .post(`${url}/deleteComment`, {
         id: JSON.stringify(id),
       })
       .then(function (res) {
@@ -51,10 +52,11 @@ const ListItem = ({ item }: itemProp) => {
         item.imgUrl === undefined ||
         item.imgUrl === null ? null : (
           <Image
-            width={272}
+            width={200}
             height={200}
             alt={`${item.imgUrl}`}
-            src={`http://localhost:9000/img/${item.imgUrl}`}
+            className="object-cover"
+            src={`${url}/img/${item.imgUrl}`}
           />
         )
       }

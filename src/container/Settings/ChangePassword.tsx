@@ -3,6 +3,7 @@ import axios from "axios";
 import { useGlobalState } from "../../hooks/GlobalHooks";
 import { useState } from "react";
 import { regexpPass } from "../../utilities/passwordRegx";
+import { url } from "../../data/url";
 
 const ChangePassword = () => {
   const [form] = Form.useForm();
@@ -11,7 +12,7 @@ const ChangePassword = () => {
   function handleFinish(e: any) {
     console.log(e.nowPassword, e.newPassword);
     axios
-      .post("http://localhost:9000/changePassword", {
+      .post(`${url}/changePassword`, {
         password: e.nowPassword,
         newPassword: e.newPassword,
         username: JSON.stringify(currentUser.username),

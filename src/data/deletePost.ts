@@ -1,5 +1,7 @@
+import { url } from "./url";
+
 const deletePost = (postId: number) => {
-  const res = fetch("http://localhost:9000/deletePost", {
+  const res = fetch(`${url}/deletePost`, {
     method: "POST",
     headers: {
       Accept: "application/json",
