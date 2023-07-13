@@ -27,10 +27,7 @@ const ShowPost = () => {
       itemLayout="vertical"
       pagination={{
         onChange: () => {
-          setGlobalState("loading", true);
-          setInterval(() => {
-            setGlobalState("loading", false);
-          }, 1000);
+          window.scrollTo(0, 0);
         },
         pageSize: 4,
         responsive: true,
