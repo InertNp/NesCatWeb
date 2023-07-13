@@ -8,7 +8,7 @@ import axios from "axios";
 import EditComment from "./EditComment";
 
 interface itemProp {
-  author: string;
+  author?: string;
   item: {
     imgUrl: string;
     commentId: number;
@@ -17,7 +17,7 @@ interface itemProp {
   };
 }
 
-const ListItem = ({ item, author }: itemProp) => {
+const ListItem = ({ item }: itemProp) => {
   const [edit, setEdit] = useState(false);
   const [refreshComment, setRefreshComment] = useGlobalState("refreshComment");
   const [currentUser] = useGlobalState("currentUser");
