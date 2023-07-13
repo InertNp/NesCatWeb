@@ -5,7 +5,7 @@ import { useState } from "react";
 import { setGlobalState } from "../hooks/GlobalHooks";
 import useMessage from "antd/es/message/useMessage";
 import { useNavigate } from "react-router-dom";
-import { regexpPass } from "../utilities/passwordRegx";
+import { regexpPass, usernameRegexp } from "../utilities/passwordRegx";
 
 type vali = "success" | "" | "error";
 
@@ -105,6 +105,10 @@ const Register = () => {
                   "Please input your Username! Must be more then 5 letter",
               },
               { min: 5, message: "Must be more than 5 characters" },
+              {
+                pattern: usernameRegexp,
+                message: "Username can't have Special Characters",
+              },
             ]}
             validateStatus={validate}
           >

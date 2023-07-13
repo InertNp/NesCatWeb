@@ -1,6 +1,6 @@
 import { Button, Image, List, Popover, message } from "antd";
 import parse from "html-react-parser";
-import { DeleteOutlined, StarFilled } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
 import { useEffect, useState } from "react";
@@ -75,11 +75,11 @@ const ListItem = ({ item, author }: itemProp) => {
       {/* actions */}
       {edit ? null : (
         <div className="flex flex-row gap-3 mt-5">
-          {currentUser.username == author ? (
+          {/* {currentUser.username == author ? ( 
             <Button>
-              <StarFilled />
+              Pin
             </Button>
-          ) : null}
+          ) : null} */}
           {currentUser.username == item.username ? (
             <Popover
               open={click}
