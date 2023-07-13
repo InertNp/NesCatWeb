@@ -22,6 +22,7 @@ const ListItem = ({ item }: itemProp) => {
   const [refreshComment, setRefreshComment] = useGlobalState("refreshComment");
   const [currentUser] = useGlobalState("currentUser");
   const [click, setClick] = useState(false);
+  // console.log(currentUser);
   function handleDelete(id: number) {
     axios
       .post("http://localhost:9000/deleteComment", {
@@ -75,12 +76,8 @@ const ListItem = ({ item }: itemProp) => {
       {/* actions */}
       {edit ? null : (
         <div className="flex flex-row gap-3 mt-5">
-          {/* {currentUser.username == author ? ( 
-            <Button>
-              Pin
-            </Button>
-          ) : null} */}
-          {currentUser.username == item.username ? (
+          {currentUser.username == item.username ||
+          currentUser.userType === "admin" ? (
             <Popover
               open={click}
               content={

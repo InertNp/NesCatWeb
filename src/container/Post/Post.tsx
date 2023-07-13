@@ -80,7 +80,7 @@ const Post = ({ id, author }: dataprop) => {
   const showDate = new Date(data.created_date || "");
   return (
     <div className="w-full  flex flex-col gap-2 ">
-      <h1 className="text-5xl m-0">{data?.topic}</h1>
+      <h1 className="text-2xl font-semibold m-0">{data?.topic}</h1>
 
       <div className="mx-2">
         {data.content === null || data.content === undefined

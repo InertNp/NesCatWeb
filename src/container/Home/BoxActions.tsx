@@ -49,6 +49,7 @@ export function Actions({ postId, username, likes }: dataType) {
         }
       });
   }, []);
+
   return (
     <div className="flex flex-row  gap-2 justify-center items-center ">
       <Button

@@ -36,7 +36,7 @@ export const PostBox = ({
     <List.Item
       key={postId}
       actions={[<Actions {...data} />]}
-      className="flex flex-row  "
+      className="flex flex-row "
     >
       <Link
         to={`/post/${postId}`}
@@ -49,6 +49,12 @@ export const PostBox = ({
         {content === null || content === undefined
           ? null
           : parse(contentComponent(content))}
+        <Link
+          to={`/post/${postId}`}
+          className=" text-blue-600 hover:text-sky-700  hover:underline "
+        >
+          {"View More"}
+        </Link>
       </div>
       {imgUrl === "undefined" || imgUrl === null ? null : (
         <Image
