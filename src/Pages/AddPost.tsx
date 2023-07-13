@@ -14,13 +14,11 @@ const AddPost = () => {
   const [alert, alertText] = useMessage();
   function handleFinish(e: any) {
     // setGlobalState("loading", true);
-    const sqlContent = e.content.replace("'", "\\'");
-    const final = sqlContent.replace('"', '\\"');
 
     const value = {
       username: userData.username,
       topic: e.title,
-      content: final,
+      content: e.content,
       imgUrl: e.upload?.response.data.name,
     };
 
