@@ -4,6 +4,8 @@ import MenuLogIn from "./MenuLogIn";
 import MenuNoLogin from "./MenuNoLogin";
 import MenuLogInAdmin from "./MenuLogInAdmin";
 import logo from "../../assets/logo.png";
+import { Button } from "antd";
+import axios from "axios";
 const NavBar = () => {
   const [isLoggedIn] = useGlobalState("isLoggedIn");
   const [currentUser] = useGlobalState("currentUser");
@@ -19,6 +21,7 @@ const NavBar = () => {
           NesCatWeb
         </Link>
       </div>
+
       {!isLoggedIn ? (
         <MenuNoLogin />
       ) : currentUser.userType === "admin" ? (

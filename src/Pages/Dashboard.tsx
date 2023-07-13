@@ -23,7 +23,7 @@ const Dashboard = () => {
       })
       .then((res) => {
         setData(res.response);
-        console.log(data);
+        // console.log(data);
       });
   };
 

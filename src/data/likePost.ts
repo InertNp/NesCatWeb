@@ -10,7 +10,7 @@ const likePost = ({ postId, username }: propType) => {
       username: JSON.stringify(username),
     })
     .then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data == true) {
         return true;
       } else {
