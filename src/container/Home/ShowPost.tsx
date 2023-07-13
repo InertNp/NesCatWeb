@@ -32,7 +32,7 @@ const ShowPost = () => {
           setPage(pageno);
           window.scrollTo(0, 0);
         },
-        pageSize: 4,
+        pageSize: 10,
         responsive: true,
         hideOnSinglePage: true,
         position: "bottom",
