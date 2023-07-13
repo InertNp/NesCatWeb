@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import showPosts from "../../data/showPosts";
 
 const ShowPost = () => {
+  const [page, setPage] = useGlobalState("page");
   const [data, setData] = useState([]);
   const [refreshPost] = useGlobalState("refreshPost");
   const fetchPosts = () => {
@@ -26,7 +27,9 @@ const ShowPost = () => {
       className="w-full "
       itemLayout="vertical"
       pagination={{
-        onChange: () => {
+        current: page,
+        onChange: (pageno) => {
+          setPage(pageno);
           window.scrollTo(0, 0);
         },
         pageSize: 4,

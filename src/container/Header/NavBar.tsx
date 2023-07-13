@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGlobalState } from "../../hooks/GlobalHooks";
+import { setGlobalState, useGlobalState } from "../../hooks/GlobalHooks";
 import MenuLogIn from "./MenuLogIn";
 import MenuNoLogin from "./MenuNoLogin";
 import MenuLogInAdmin from "./MenuLogInAdmin";
@@ -13,6 +13,9 @@ const NavBar = () => {
     <div className="flex flex-row justify-center items-center w-full h-full ">
       <div className="basis-1/3   h-[100%] flex justify-start items-center ">
         <Link
+          onClick={() => {
+            setGlobalState("page", 1);
+          }}
           to={"./"}
           className="flex flex-row items-center justify-center gap-2 text-black text-xl"
         >

@@ -11,6 +11,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
   refreshComment: true,
   hide: false,
   refreshDash: true,
+  page: 1,
 });
 
 export { setGlobalState, useGlobalState };
